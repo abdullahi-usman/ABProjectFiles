@@ -13,18 +13,21 @@
       </SearchPaths>
     </CompilerOptions>
     <Description Value="ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming."/>
-    <Version Minor="1" Release="1" Build="1"/>
+    <Version Major="1" Release="2" Build="2"/>
     <Files Count="1">
       <Item1>
         <Filename Value="projectfiles.pas"/>
         <HasRegisterProc Value="True"/>
-        <UnitName Value="projectfiles"/>
+        <UnitName Value="ProjectFiles"/>
       </Item1>
     </Files>
-    <RequiredPkgs Count="1">
+    <RequiredPkgs Count="2">
       <Item1>
-        <PackageName Value="IDEIntf"/>
+        <PackageName Value="CodeTools"/>
       </Item1>
+      <Item2>
+        <PackageName Value="IDEIntf"/>
+      </Item2>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>
