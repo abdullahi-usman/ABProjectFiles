@@ -12,7 +12,9 @@
         <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
-    <Description Value="ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming."/>
+    <Description Value="ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming.
+
+After installation goto: View -> Project Files"/>
     <Version Major="1" Release="2" Build="2"/>
     <Files Count="1">
       <Item1>
