@@ -34,7 +34,7 @@
     </UsageOptions>
     <PublishOptions>
       <Version Value="2"/>
-      <DestinationDirectory Value="$(ProjPath)\published\"/>
+      <DestinationDirectory Value="$(TestDir)\publishedproject\"/>
       <OpenInFileMan Value="True"/>
       <UseFileFilters Value="True"/>
     </PublishOptions>
