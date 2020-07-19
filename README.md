@@ -11,9 +11,10 @@ Package -> Open Package File
 then click Compile and then Use -> Install
 
 ### Dependencies:
-CodeTools
-IDEIntf
-Install from the package manager within the editor
-package -> Install/Uninstall Packages.
+CodeTools, IDEIntf
+
+Install from the package manager within the editor.
+
+Package -> Install/Uninstall Packages.
 
 Thanks.
