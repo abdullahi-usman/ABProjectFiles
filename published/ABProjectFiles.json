@@ -5,12 +5,12 @@
     "Category" : "LazIDEPlugins",
     "CommunityDescription" : "ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming.",
     "RepositoryFileName" : "ABProjectFiles.zip",
-    "RepositoryFileSize" : 4087,
-    "RepositoryFileHash" : "0151f80423b3cc0fcf063f5eafdfad23",
-    "RepositoryDate" : 4.4031045873923613E+004,
+    "RepositoryFileSize" : 5234,
+    "RepositoryFileHash" : "89debe2426ee0ce25f77cced263d68e3",
+    "RepositoryDate" : 4.4031052776932869E+004,
     "PackageBaseDir" : "ABProjectFiles\\/",
     "HomePageURL" : "https://github.com/abdullahi-usman/ABProjectFiles",
-    "DownloadURL" : "",
+    "DownloadURL" : "https://github.com/abdullahi-usman/ABProjectFiles/blob/master/published/update_ABProjectFiles.json",
     "SVNURL" : ""
   },
   "PackageFiles0" : [
