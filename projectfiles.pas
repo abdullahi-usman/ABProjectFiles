@@ -132,15 +132,22 @@ begin
   filepath := CleanAndExpandFilename(Self.FilesList.Selected.GetTextPath);
   filename :=ExtractFilename(filepath);
   newfilename := InputBox('Edit Filename: ' + filename, 'Please Write a new filename', filename);
-  if newfilename.IsEmpty or (CompareText(filename, newfilename) = 0) then exit;
+  if newfilename.IsEmpty or SameFileName(filename, newfilename) then exit;
 
   newfilepath := CreateAbsolutePath(newfilename, ExtractFilePath(filepath));
-  LazarusIDE.DoCloseEditorFile(filepath, [cfQuiet, cfSaveFirst]);
 
-  RenameFile(filepath, newfilepath);
+  if ((FileGetAttr(filename) and faDirectory) <> 0) then
+  begin
+    RenameFile(filepath, newfilepath);
+  end
+  else
+  begin
+    LazarusIDE.DoCloseEditorFile(filepath, [cfQuiet, cfSaveFirst]);
+    RenameFile(filepath, newfilepath);
 
-  if MessageDlg ('Open File', 'Due to the renaming operation, file may have been closed, do you want to open?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    LazarusIDE.DoOpenEditorFile(newfilepath, 0, 0, [ofQuiet, ofOnlyIfExists, ofAddToProject]);
+    if MessageDlg ('Open File', 'Due to the renaming operation, file may have been closed, do you want to open?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      LazarusIDE.DoOpenEditorFile(newfilepath, 0, 0, [ofQuiet, ofOnlyIfExists, ofAddToProject]);
+  end;
 
   Self.ProjectRefresh();
 end;
