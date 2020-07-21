@@ -103,7 +103,7 @@ begin
 
     DeleteMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
     DeleteMenuItem.Caption:='Delete';
-    DeleteMenuItem.Name := 'Delete';
+    DeleteMenuItem.Name := 'DeleteItems';
     DeleteMenuItem.OnClick := @Self.DeleteSelectedFile;
 
     Self.FilesList.PopupMenu.Items.Add(DeleteMenuItem);
