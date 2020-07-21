@@ -71,6 +71,7 @@ end;
 procedure TABProjectFiles.OpenPopupMenu(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 var
+  OpenMenuItem: TMenuItem;
   EditMenuItem: TMenuItem;
   DeleteMenuItem: TMenuItem;
   CreateNewMenuItem: TMenuItem;
@@ -83,6 +84,11 @@ begin
 
   if (Self.FilesList.SelectionCount > 0) then
   begin
+    OpenMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
+    OpenMenuItem.Caption := 'Open Item';
+    OpenMenuItem.Name := 'OpenItem';
+    OpenMenuItem.OnClick := @Self.OnFileNameClicked;
+
     EditMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
     EditMenuItem.Caption:= 'Edit File Name';
     EditMenuItem.Name:= 'Edit';
@@ -93,6 +99,7 @@ begin
     DeleteMenuItem.Name := 'Delete';
     DeleteMenuItem.OnClick := @Self.DeleteSelectedFile;
 
+    Self.FilesList.PopupMenu.Items.Add(OpenMenuItem);
     Self.FilesList.PopupMenu.Items.Add(EditMenuItem);
     Self.FilesList.PopupMenu.Items.Add(DeleteMenuItem);
   end;
