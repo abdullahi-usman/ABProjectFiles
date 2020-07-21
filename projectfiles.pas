@@ -207,7 +207,14 @@ end;
 procedure TABProjectFiles.OnFileNameClicked(Sender: TObject);
 var filename: string;
 begin
-  filename := ABProjectFiles.FilesList.Selected.GetTextPath;
+  filename := Self.FilesList.Selected.GetTextPath;
+
+  if (FileGetAttr(filename) and faDirectory) <> 0 then
+  begin
+    Self.FilesList.Selected.Expand(false);
+    exit;
+  end;
+
   LazarusIDE.DoOpenEditorFile(filename, 0, 0, [ofOnlyIfExists]);
 end;
 
