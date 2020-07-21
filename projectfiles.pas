@@ -84,23 +84,28 @@ begin
 
   if (Self.FilesList.SelectionCount > 0) then
   begin
-    OpenMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
-    OpenMenuItem.Caption := 'Open Item';
-    OpenMenuItem.Name := 'OpenItem';
-    OpenMenuItem.OnClick := @Self.OnFileNameClicked;
+     if (Self.FilesList.SelectionCount = 1) then
+     begin
+        OpenMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
+        OpenMenuItem.Caption := 'Open Item';
+        OpenMenuItem.Name := 'OpenItem';
+        OpenMenuItem.OnClick := @Self.OnFileNameClicked;
 
-    EditMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
-    EditMenuItem.Caption:= 'Edit File Name';
-    EditMenuItem.Name:= 'Edit';
-    EditMenuItem.OnClick := @Self.EditSelectedFile;
+        EditMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
+        EditMenuItem.Caption:= 'Edit Item Name';
+        EditMenuItem.Name:= 'EditItem';
+        EditMenuItem.OnClick := @Self.EditSelectedFile;
+
+        Self.FilesList.PopupMenu.Items.Add(OpenMenuItem);
+        Self.FilesList.PopupMenu.Items.Add(EditMenuItem);
+     end;
+
 
     DeleteMenuItem := TMenuItem.Create(Self.FilesList.PopupMenu);
     DeleteMenuItem.Caption:='Delete';
     DeleteMenuItem.Name := 'Delete';
     DeleteMenuItem.OnClick := @Self.DeleteSelectedFile;
 
-    Self.FilesList.PopupMenu.Items.Add(OpenMenuItem);
-    Self.FilesList.PopupMenu.Items.Add(EditMenuItem);
     Self.FilesList.PopupMenu.Items.Add(DeleteMenuItem);
   end;
 
