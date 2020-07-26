@@ -230,11 +230,11 @@ begin
   ABProjectFiles.Name:= 'ABProjectFiles';
   with ABProjectFiles.ChildSizing do
   begin
-  Layout := cclLeftToRightThenTopToBottom;
-  EnlargeHorizontal := crsHomogenousChildResize;
-  EnlargeVertical := crsHomogenousChildResize;
-  ShrinkHorizontal:= crsHomogenousChildResize;
-  ShrinkVertical:= crsHomogenousChildResize;
+    Layout := cclLeftToRightThenTopToBottom;
+    EnlargeHorizontal := crsHomogenousChildResize;
+    EnlargeVertical := crsHomogenousChildResize;
+    ShrinkHorizontal:= crsHomogenousChildResize;
+    ShrinkVertical:= crsHomogenousChildResize;
   end;
 
   ABProjectFiles.Menu := TMainMenu.Create(ABProjectFiles);
@@ -250,17 +250,17 @@ begin
   ABProjectFiles.FilesList := TShellTreeView.Create(ABProjectFiles);
   with ABProjectFiles.FilesList do
   begin
-  Parent := ABProjectFiles;
-  SelectionColor := clHighlight;
+    Parent := ABProjectFiles;
+    SelectionColor := clHighlight;
 
-  ExpandSignType := tvestPlusMinus;
-  FileSortType:=fstFoldersFirst;
-  ObjectTypes:=[otFolders,otNonFolders];
-  Options := [tvoHotTrack, tvoAllowMultiSelect,tvoAutoItemHeight,tvoHideSelection,tvoKeepCollapsedNodes,tvoRowSelect,tvoShowButtons,tvoShowLines,tvoShowRoot,tvoToolTips,tvoThemedDraw];
-  OnDblClick := @ABProjectFiles.OnFileNameClicked;
-  MultiSelectStyle := [msControlSelect];
-  OnMouseDown := @ABProjectFiles.OpenPopupMenu;
-  ReadOnly := True;
+    ExpandSignType := tvestPlusMinus;
+    FileSortType:=fstFoldersFirst;
+    ObjectTypes:=[otFolders,otNonFolders];
+    Options := [tvoHotTrack, tvoAllowMultiSelect,tvoAutoItemHeight,tvoHideSelection,tvoKeepCollapsedNodes,tvoRowSelect,tvoShowButtons,tvoShowLines,tvoShowRoot,tvoToolTips,tvoThemedDraw];
+    OnDblClick := @ABProjectFiles.OnFileNameClicked;
+    MultiSelectStyle := [msControlSelect];
+    OnMouseDown := @ABProjectFiles.OpenPopupMenu;
+    ReadOnly := True;
   end;
 
   ABProjectFiles.OnActivate := @ABProjectFiles.FormActivate;
