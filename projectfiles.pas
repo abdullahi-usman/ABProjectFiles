@@ -228,11 +228,14 @@ begin
   IDEWindowCreators.CreateForm(ABProjectFiles,TForm,DoDisableAutosizing,Application);
 
   ABProjectFiles.Name:= 'ABProjectFiles';
-  ABProjectFiles.ChildSizing.Layout := cclLeftToRightThenTopToBottom;
-  ABProjectFiles.ChildSizing.EnlargeHorizontal := crsHomogenousChildResize;
-  ABProjectFiles.ChildSizing.EnlargeVertical := crsHomogenousChildResize;
-  ABProjectFiles.ChildSizing.ShrinkHorizontal:= crsHomogenousChildResize;
-  ABProjectFiles.ChildSizing.ShrinkVertical:= crsHomogenousChildResize;
+  with ABProjectFiles.ChildSizing do
+  begin
+  Layout := cclLeftToRightThenTopToBottom;
+  EnlargeHorizontal := crsHomogenousChildResize;
+  EnlargeVertical := crsHomogenousChildResize;
+  ShrinkHorizontal:= crsHomogenousChildResize;
+  ShrinkVertical:= crsHomogenousChildResize;
+  end;
 
   ABProjectFiles.Menu := TMainMenu.Create(ABProjectFiles);
   ABProjectFiles.Menu.Parent := ABProjectFiles;
@@ -245,17 +248,20 @@ begin
   ABProjectFiles.Menu.Items.Add(refreshMenu);
 
   ABProjectFiles.FilesList := TShellTreeView.Create(ABProjectFiles);
-  ABProjectFiles.FilesList.Parent := ABProjectFiles;
-  ABProjectFiles.FilesList.SelectionColor := clHighlight;
+  with ABProjectFiles.FilesList do
+  begin
+  Parent := ABProjectFiles;
+  SelectionColor := clHighlight;
 
-  ABProjectFiles.FilesList.ExpandSignType := tvestPlusMinus;
-  ABProjectFiles.FilesList.FileSortType:=fstFoldersFirst;
-  ABProjectFiles.FilesList.ObjectTypes:=[otFolders,otNonFolders];
-  ABProjectFiles.FilesList.Options := [tvoHotTrack, tvoAllowMultiSelect,tvoAutoItemHeight,tvoHideSelection,tvoKeepCollapsedNodes,tvoRowSelect,tvoShowButtons,tvoShowLines,tvoShowRoot,tvoToolTips,tvoThemedDraw];
-  ABProjectFiles.FilesList.OnDblClick := @ABProjectFiles.OnFileNameClicked;
-  ABProjectFiles.FilesList.MultiSelectStyle := [msControlSelect];
-  ABProjectFiles.FilesList.OnMouseDown := @ABProjectFiles.OpenPopupMenu;
-  ABProjectFiles.FilesList.ReadOnly := True;
+  ExpandSignType := tvestPlusMinus;
+  FileSortType:=fstFoldersFirst;
+  ObjectTypes:=[otFolders,otNonFolders];
+  Options := [tvoHotTrack, tvoAllowMultiSelect,tvoAutoItemHeight,tvoHideSelection,tvoKeepCollapsedNodes,tvoRowSelect,tvoShowButtons,tvoShowLines,tvoShowRoot,tvoToolTips,tvoThemedDraw];
+  OnDblClick := @ABProjectFiles.OnFileNameClicked;
+  MultiSelectStyle := [msControlSelect];
+  OnMouseDown := @ABProjectFiles.OpenPopupMenu;
+  ReadOnly := True;
+  end;
 
   ABProjectFiles.OnActivate := @ABProjectFiles.FormActivate;
 
@@ -264,7 +270,6 @@ begin
   AForm := ABProjectFiles;
 
 end;
-
 
 
 procedure StartMyTool(Ox: TObject);
