@@ -77,7 +77,7 @@ var
   CreateNewMenuItem: TMenuItem;
   RefreshMenuItem: TMenuItem;
 begin
-  if ((Shift <> []) and (Button <> mbRight)) then exit;
+  if ((Shift <> []) and (Button <> mbRight)) or (Self.FilesList.Selected = Self.FilesList.TopItem) then exit;
 
   Self.FilesList.PopupMenu := TPopupMenu.Create(Self);
   Self.FilesList.PopupMenu.Parent := Self;
