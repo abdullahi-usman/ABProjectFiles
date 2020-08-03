@@ -1,0 +1,117 @@
+object ABProjectFiles: TABProjectFiles
+  Left = 515
+  Height = 240
+  Top = 42
+  Width = 320
+  Caption = 'ABProjectFiles'
+  ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+  ChildSizing.EnlargeVertical = crsHomogenousChildResize
+  ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+  ChildSizing.ShrinkVertical = crsHomogenousChildResize
+  ChildSizing.Layout = cclLeftToRightThenTopToBottom
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  LCLVersion = '2.0.10.0'
+  object ABPageControl: TPageControl
+    Left = 0
+    Height = 240
+    Top = 0
+    Width = 320
+    ActivePage = ProjectSheet
+    TabIndex = 0
+    TabOrder = 0
+    object ProjectSheet: TTabSheet
+      Caption = 'Project Files'
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+      ChildSizing.ShrinkVertical = crsHomogenousChildResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ClientHeight = 212
+      ClientWidth = 312
+      object ABProjectFilesTreeView: TTreeView
+        Left = 0
+        Height = 212
+        Top = 0
+        Width = 312
+        HotTrack = True
+        MultiSelect = True
+        PopupMenu = ProjectFilesPopupMenu
+        ReadOnly = True
+        RightClickSelect = True
+        RowSelect = True
+        TabOrder = 0
+        OnDblClick = ABProjectFilesTreeViewDblClick
+        Options = [tvoAllowMultiselect, tvoAutoItemHeight, tvoHideSelection, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
+      end
+    end
+    object AllFilesSheet: TTabSheet
+      Caption = 'All Files'
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+      ChildSizing.ShrinkVertical = crsHomogenousChildResize
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ClientHeight = 212
+      ClientWidth = 312
+      object ABAllFilesShellTreeView: TShellTreeView
+        Left = 0
+        Height = 212
+        Top = 0
+        Width = 312
+        FileSortType = fstNone
+        PopupMenu = AllFilesPopupMenu
+        ReadOnly = True
+        RightClickSelect = True
+        RowSelect = True
+        TabOrder = 0
+        OnDblClick = ABAllFilesShellTreeViewDblClick
+        Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
+        ObjectTypes = [otFolders, otNonFolders, otHidden]
+      end
+    end
+  end
+  object ProjectFilesPopupMenu: TPopupMenu
+    OnPopup = ProjectFilesPopupMenuPopup
+    Left = 64
+    Top = 104
+    object ProjectFilesOpenMenuItem: TMenuItem
+      Caption = 'Open'
+      OnClick = ProjectFilesOpenMenuItemClick
+    end
+    object ProjectFilesRenameMenuItem: TMenuItem
+      Caption = 'Rename'
+      OnClick = ProjectFilesRenameMenuItemClick
+    end
+    object ProjectFilesDeleteMenuItem: TMenuItem
+      Caption = 'Delete'
+      OnClick = ProjectFilesDeleteMenuItemClick
+    end
+    object ProjectFilesRemoveMenuItem: TMenuItem
+      Caption = 'Remove'
+      OnClick = ProjectFilesRemoveMenuItemClick
+    end
+    object ProjectFilesCreateNewItemMenuItem: TMenuItem
+      Caption = 'Create New Item'
+      OnClick = ProjectFilesCreateNewItemMenuItemClick
+    end
+    object ProjectFilesRefreshMenuItem: TMenuItem
+      Caption = 'Refresh'
+      OnClick = ProjectFilesRefreshMenuItemClick
+    end
+  end
+  object AllFilesPopupMenu: TPopupMenu
+    OnPopup = AllFilesPopupMenuPopup
+    Left = 208
+    Top = 104
+    object AllFilesOpenItem: TMenuItem
+      Caption = 'Open Item'
+      OnClick = AllFilesOpenItemClick
+    end
+    object AllFilesAddItemToProjectMenuItem: TMenuItem
+      Caption = 'Add Unit To Project'
+      OnClick = AllFilesAddItemToProjectMenuItemClick
+    end
+  end
+end
