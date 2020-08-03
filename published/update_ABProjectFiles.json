@@ -9,7 +9,7 @@
   ],
   "UpdatePackageData" : {
     "DisableInOPM" : false,
-    "DownloadZipURL" : "https://abdullahi-usman.github.io/ABProjectFiles/published/update_ABProjectFiles.json",
+    "DownloadZipURL" : "https://github.com/abdullahi-usman/ABProjectFiles/releases/download/2.0.0.0/ABProjectFiles.zip",
     "Name" : "ABProjectFiles"
   }
 }
