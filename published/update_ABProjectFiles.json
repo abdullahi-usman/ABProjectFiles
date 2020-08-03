@@ -1,7 +1,7 @@
 {
   "UpdateLazPackages" : [
     {
-      "ForceNotify" : false,
+      "ForceNotify" : true,
       "InternalVersion" : 2,
       "Name" : "abprojectfiles.lpk",
       "Version" : "2.0.0.0"
