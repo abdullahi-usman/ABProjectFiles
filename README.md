@@ -2,7 +2,7 @@
 
 ABProjectFiles is a Lazarus IDE plugin that helps view and open current project files.
 
-After installation goto View -> Project Files.
+After installation goto View -> Project Files. <br/>
 Or Shortcut: CTRL + ALT + P.
 
 ### Installation:
