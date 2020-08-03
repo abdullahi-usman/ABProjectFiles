@@ -100,6 +100,7 @@ implementation
 destructor TABProjectFiles.Destroy();
 begin
   LazarusIDE.RemoveHandlerOnProjectOpened(@Self.ProjectOpened);
+  LazarusIDE.RemoveHandlerOnSaveEditorFile(@OnSaveEditorFile);
   SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorCreate, @Self.OnSourceEditorWindowAdded);
   SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorDestroy, @Self.OnSourceEditorWindowRemoved);
 end;
@@ -372,7 +373,8 @@ begin
 
   if SaveStep <> sefsBeforeWrite then exit;
 
-  if not FileExists(TargetFilename) then Self.AddNodeToTreeView(aFile);
+  if not FileExists(TargetFilename) then Self.ProjectFilesRefresh;
+
   exit(mrOk);
 end;
 
