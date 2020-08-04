@@ -15,8 +15,8 @@
     <Description Value="ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming.
 
 After installation goto: View -> Project Files
-or as shortcut: CTRL + ALT + P"/>
-    <Version Major="2"/>
+Or as shortcut: CTRL + ALT + P"/>
+    <Version Major="2" Minor="1"/>
     <Files Count="1">
       <Item1>
         <Filename Value="projectfiles.pas"/>
