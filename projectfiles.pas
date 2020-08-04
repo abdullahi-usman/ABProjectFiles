@@ -8,7 +8,7 @@ uses
   ShellCtrls, ComCtrls, StdCtrls, LazLoggerBase, LCLType, ProjectIntf, Menus, Controls,
   Classes, SysUtils, MenuIntf, StrUtils, LazIDEIntf, IDECommands, FileUtil,
   IDEWindowIntf, LazFileUtils, IDEMsgIntf, IDEExternToolIntf, SrcEditorIntf,
-  Forms, CodeToolManager, CodeCache, Dialogs, GraphType, Graphics;
+  Forms, CodeToolManager, CodeCache, Dialogs, GraphType, Graphics, ExtCtrls;
 
 type
 
@@ -31,6 +31,9 @@ type
     ProjectFilesPopupMenu: TPopupMenu;
     ProjectSheet: TTabSheet;
     AllFilesSheet: TTabSheet;
+    AllFilesProjectDirectoryRadioButton: TRadioButton;
+    AllFilesRootDirectoryRadioButton: TRadioButton;
+    AllFilesRadioGroup: TRadioGroup;
 
 
     RootNode: TTreeNode;
@@ -48,6 +51,7 @@ type
     procedure AllFilesAddItemToProjectMenuItemClick(Sender: TObject);
     procedure AllFilesOpenItemClick(Sender: TObject);
     procedure AllFilesPopupMenuPopup(Sender: TObject);
+    procedure AllFilesRadioGroupClick(Sender: TObject);
 
     procedure FormCreate(Sender: TObject);
     procedure ProjectFilesRemoveMenuItemClick(Sender: TObject);
@@ -59,6 +63,7 @@ type
     procedure ProjectFilesRefreshMenuItemClick(Sender: TObject);
     procedure ProjectFilesRenameMenuItemClick(Sender: TObject);
     procedure ProjectFilesRefresh;
+    procedure RefreshAllFilesProjectView;
     procedure RemoveProjectFile(const projFile: TLazProjectFile);
     function OnSaveEditorFile(Sender: TObject; aFile: TLazProjectFile;
     SaveStep: TSaveEditorFileStep; TargetFilename: string): TModalResult;
@@ -124,6 +129,7 @@ end;
 function TABProjectFiles.ProjectOpened(Sender: TObject; AProject: TLazProject): TModalResult;
 begin
   Self.ProjectFilesRefresh;
+  Self.RefreshAllFilesProjectView;
   exit(mrNo);
 end;
 
@@ -234,7 +240,11 @@ end;
 procedure TABProjectFiles.FormCreate(Sender: TObject);
 begin
 
-  if Assigned(LazarusIDE.ActiveProject) then Self.ProjectFilesRefresh else Self.InitProjectTreeViewTopNodes;
+  if Assigned(LazarusIDE.ActiveProject) then begin
+   Self.ProjectFilesRefresh;
+   Self.RefreshAllFilesProjectView;
+   end
+   else Self.InitProjectTreeViewTopNodes;
 
   LazarusIDE.AddHandlerOnProjectOpened(@ProjectOpened, True);
   LazarusIDE.AddHandlerOnSaveEditorFile(@OnSaveEditorFile, True);
@@ -337,6 +347,16 @@ begin
 
   RootNode.Expand(False);
   UnitNode.Expand(True);
+end;
+
+procedure TABProjectFiles.RefreshAllFilesProjectView;
+begin
+  if AllFilesProjectDirectoryRadioButton.Checked then
+   begin
+    Self.ABAllFilesShellTreeView.Root := LazarusIDE.ActiveProject.Directory;
+   end else if AllFilesRootDirectoryRadioButton.Checked then begin
+    Self.ABAllFilesShellTreeView.Root := '';
+   end;
 end;
 
 procedure TABProjectFiles.RemoveProjectFileFromTreeView(
@@ -453,6 +473,11 @@ begin
     Self.AllFilesAddItemToProjectMenuItem.Enabled := False else Self.AllFilesAddItemToProjectMenuItem.Enabled := True;
   end;
 
+end;
+
+procedure TABProjectFiles.AllFilesRadioGroupClick(Sender: TObject);
+begin
+  RefreshAllFilesProjectView;
 end;
 
 

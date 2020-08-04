@@ -9,17 +9,17 @@ object ABProjectFiles: TABProjectFiles
   ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
   ChildSizing.ShrinkVertical = crsHomogenousChildResize
   ChildSizing.Layout = cclLeftToRightThenTopToBottom
-  ClientHeight = 240
-  ClientWidth = 320
+  ClientHeight = 0
+  ClientWidth = 0
   OnCreate = FormCreate
   LCLVersion = '2.0.10.0'
   object ABPageControl: TPageControl
     Left = 0
-    Height = 240
+    Height = 1
     Top = 0
-    Width = 320
-    ActivePage = ProjectSheet
-    TabIndex = 0
+    Width = 1
+    ActivePage = AllFilesSheet
+    TabIndex = 1
     TabOrder = 0
     object ProjectSheet: TTabSheet
       Caption = 'Project Files'
@@ -28,13 +28,13 @@ object ABProjectFiles: TABProjectFiles
       ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
       ChildSizing.ShrinkVertical = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ClientHeight = 212
-      ClientWidth = 312
+      ClientHeight = 0
+      ClientWidth = 0
       object ABProjectFilesTreeView: TTreeView
         Left = 0
-        Height = 212
+        Height = 1
         Top = 0
-        Width = 312
+        Width = 1
         HotTrack = True
         MultiSelect = True
         PopupMenu = ProjectFilesPopupMenu
@@ -48,18 +48,22 @@ object ABProjectFiles: TABProjectFiles
     end
     object AllFilesSheet: TTabSheet
       Caption = 'All Files'
-      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-      ChildSizing.EnlargeVertical = crsHomogenousChildResize
-      ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
-      ChildSizing.ShrinkVertical = crsHomogenousChildResize
-      ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ClientHeight = 212
-      ClientWidth = 312
+      ChildSizing.Layout = cclTopToBottomThenLeftToRight
+      ClientHeight = 0
+      ClientWidth = 0
       object ABAllFilesShellTreeView: TShellTreeView
+        AnchorSideLeft.Control = AllFilesSheet
+        AnchorSideTop.Control = AllFilesRadioGroup
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = AllFilesSheet
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = AllFilesSheet
+        AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 212
-        Top = 0
-        Width = 312
+        Height = 0
+        Top = 39
+        Width = 0
+        Anchors = [akTop, akLeft, akRight, akBottom]
         FileSortType = fstNone
         PopupMenu = AllFilesPopupMenu
         ReadOnly = True
@@ -69,6 +73,48 @@ object ABProjectFiles: TABProjectFiles
         OnDblClick = ABAllFilesShellTreeViewDblClick
         Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoRowSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoNoDoubleClickExpand, tvoThemedDraw]
         ObjectTypes = [otFolders, otNonFolders, otHidden]
+      end
+      object AllFilesRadioGroup: TRadioGroup
+        AnchorSideLeft.Control = AllFilesSheet
+        AnchorSideTop.Control = AllFilesSheet
+        Left = 0
+        Height = 39
+        Top = 0
+        Width = 223
+        AutoFill = True
+        AutoSize = True
+        Caption = 'Current Directory'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
+        ChildSizing.ShrinkVertical = crsHomogenousChildResize
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 2
+        ClientHeight = 19
+        ClientWidth = 219
+        OnClick = AllFilesRadioGroupClick
+        TabOrder = 1
+        object AllFilesProjectDirectoryRadioButton: TRadioButton
+          Left = 6
+          Height = 19
+          Top = 0
+          Width = 111
+          Caption = 'Project Directory '
+          Checked = True
+          OnClick = AllFilesRadioGroupClick
+          TabOrder = 1
+          TabStop = True
+        end
+        object AllFilesRootDirectoryRadioButton: TRadioButton
+          Left = 117
+          Height = 19
+          Top = 0
+          Width = 96
+          Caption = 'Root Directory'
+          OnClick = AllFilesRadioGroupClick
+          TabOrder = 0
+        end
       end
     end
   end
