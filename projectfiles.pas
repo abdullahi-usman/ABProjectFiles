@@ -488,9 +488,13 @@ end;
 
 procedure TABProjectFiles.ABAllFilesShellTreeViewOpenSelectedItem;
 begin
-   if (ABAllFilesShellTreeView.Selected <> nil) then
-      LazarusIDE.DoOpenEditorFile(ABAllFilesShellTreeView.Selected.GetTextPath, 0, 0, [
-        ofQuiet, ofDoLoadResource, ofVirtualFile]);
+   if (ABAllFilesShellTreeView.Selected <> nil) then begin
+    if (FileGetAttr(ABAllFilesShellTreeView.Selected.GetTextPath) and faDirectory) <> 0 then
+     begin
+      ABAllFilesShellTreeView.Selected.Expand(False);
+     end else LazarusIDE.DoOpenEditorFile(ABAllFilesShellTreeView.Selected.GetTextPath, 0, 0, [
+        ofQuiet, ofDoLoadResource, ofVirtualFile]);;
+   end;
 end;
 
 
