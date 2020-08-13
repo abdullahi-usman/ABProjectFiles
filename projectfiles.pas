@@ -54,6 +54,7 @@ type
     procedure AllFilesRadioGroupClick(Sender: TObject);
 
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure ProjectFilesRemoveMenuItemClick(Sender: TObject);
     procedure ProjectFilesCreateNewItemMenuItemClick(Sender: TObject);
     procedure ProjectFilesDeleteMenuItemClick(Sender: TObject);
@@ -246,6 +247,10 @@ begin
    end
    else Self.InitProjectTreeViewTopNodes;
 
+end;
+
+procedure TABProjectFiles.FormShow(Sender: TObject);
+begin
   LazarusIDE.AddHandlerOnProjectOpened(@ProjectOpened, True);
   LazarusIDE.AddHandlerOnSaveEditorFile(@OnSaveEditorFile, True);
   SrcEditorIntf.SourceEditorManagerIntf.RegisterChangeEvent(semEditorCreate, @OnSourceEditorWindowAdded);
