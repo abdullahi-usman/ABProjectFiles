@@ -473,6 +473,7 @@ begin
     Self.AllFilesAddItemToProjectMenuItem.Enabled := False else Self.AllFilesAddItemToProjectMenuItem.Enabled := True;
   end;
 
+
 end;
 
 procedure TABProjectFiles.AllFilesRadioGroupClick(Sender: TObject);
@@ -493,7 +494,7 @@ begin
      begin
       ABAllFilesShellTreeView.Selected.Expand(False);
      end else LazarusIDE.DoOpenEditorFile(ABAllFilesShellTreeView.Selected.GetTextPath, 0, 0, [
-        ofQuiet, ofDoLoadResource, ofVirtualFile]);;
+        ofQuiet, ofDoLoadResource, ofVirtualFile, ofOnlyIfExists]);;
    end;
 end;
 
