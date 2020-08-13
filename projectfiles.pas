@@ -22,6 +22,7 @@ type
     AllFilesPopupMenu: TPopupMenu;
     AllFilesAddItemToProjectMenuItem: TMenuItem;
     AllFilesOpenItem: TMenuItem;
+    AllFilesAddSrcPathMenuItem: TMenuItem;
     ProjectFilesRemoveMenuItem: TMenuItem;
     ProjectFilesCreateNewItemMenuItem: TMenuItem;
     ProjectFilesOpenMenuItem: TMenuItem;
@@ -49,6 +50,7 @@ type
   procedure ABAllFilesShellTreeViewDblClick(Sender: TObject);
     procedure ABProjectFilesTreeViewDblClick(Sender: TObject);
     procedure AllFilesAddItemToProjectMenuItemClick(Sender: TObject);
+    procedure AllFilesAddSrcPathMenuItemClick(Sender: TObject);
     procedure AllFilesOpenItemClick(Sender: TObject);
     procedure AllFilesPopupMenuPopup(Sender: TObject);
     procedure AllFilesRadioGroupClick(Sender: TObject);
@@ -468,6 +470,15 @@ begin
   end;
 end;
 
+procedure TABProjectFiles.AllFilesAddSrcPathMenuItemClick(Sender: TObject);
+begin
+   if ((FileGetAttr(ABAllFilesShellTreeView.Selected.GetTextPath) and faDirectory) <> 0) then begin
+    AddIDEMessage(TMessageLineUrgency.mluImportant, 'clicked open add');
+    //IDECommands.ExecuteIDECommand(TObject(CleanAndExpandFilename(Self.ABAllFilesShellTreeView.Selected.GetTextPath)), IDECommands.ecAddCurUnitToProj);
+    LazarusIDE.ActiveProject.AddSrcPath(ExtractRelativePath(LazarusIDE.ActiveProject.Directory, CleanAndExpandFilename(Self.ABAllFilesShellTreeView.Selected.GetTextPath)));
+   end;
+end;
+
 procedure TABProjectFiles.AllFilesOpenItemClick(Sender: TObject);
 begin
   if ((FileGetAttr(ABAllFilesShellTreeView.Selected.GetTextPath) and faDirectory) <> 0) then
@@ -478,9 +489,15 @@ end;
 
 procedure TABProjectFiles.AllFilesPopupMenuPopup(Sender: TObject);
 begin
+
   if ABAllFilesShellTreeView.Selected <> nil then begin
    if (not FilenameIsPascalUnit(CleanAndExpandFilename(ABAllFilesShellTreeView.Selected.GetTextPath))) then
     Self.AllFilesAddItemToProjectMenuItem.Enabled := False else Self.AllFilesAddItemToProjectMenuItem.Enabled := True;
+
+   //if ((FileGetAttr(ABAllFilesShellTreeView.Selected.GetTextPath) and faDirectory) <> 0) then
+   // Self.AllFilesAddSrcPathMenuItem.Enabled := True
+   //else Self.AllFilesAddSrcPathMenuItem.Enabled := False;
+
   end;
 
 
