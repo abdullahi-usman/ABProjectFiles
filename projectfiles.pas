@@ -56,6 +56,7 @@ type
     procedure AllFilesRadioGroupClick(Sender: TObject);
 
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ProjectFilesRemoveMenuItemClick(Sender: TObject);
     procedure ProjectFilesCreateNewItemMenuItemClick(Sender: TObject);
@@ -107,10 +108,7 @@ implementation
 
 destructor TABProjectFiles.Destroy();
 begin
-  LazarusIDE.RemoveHandlerOnProjectOpened(@Self.ProjectOpened);
-  LazarusIDE.RemoveHandlerOnSaveEditorFile(@OnSaveEditorFile);
-  SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorCreate, @Self.OnSourceEditorWindowAdded);
-  SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorDestroy, @Self.OnSourceEditorWindowRemoved);
+
 end;
 
 procedure TABProjectFiles.RemoveFileFromProjectAndTreeView(
@@ -249,14 +247,25 @@ begin
    end
    else Self.InitProjectTreeViewTopNodes;
 
-end;
-
-procedure TABProjectFiles.FormShow(Sender: TObject);
-begin
   LazarusIDE.AddHandlerOnProjectOpened(@ProjectOpened, True);
   LazarusIDE.AddHandlerOnSaveEditorFile(@OnSaveEditorFile, True);
   SrcEditorIntf.SourceEditorManagerIntf.RegisterChangeEvent(semEditorCreate, @OnSourceEditorWindowAdded);
   SrcEditorIntf.SourceEditorManagerIntf.RegisterChangeEvent(semEditorDestroy, @OnSourceEditorWindowRemoved);
+end;
+
+procedure TABProjectFiles.FormDestroy(Sender: TObject);
+begin
+  FileCreate(LazarusIDE.ActiveProject.Directory + '\momentum');
+  LazarusIDE.RemoveHandlerOnProjectOpened(@Self.ProjectOpened);
+  LazarusIDE.RemoveHandlerOnSaveEditorFile(@OnSaveEditorFile);
+  SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorCreate, @Self.OnSourceEditorWindowAdded);
+  SrcEditorIntf.SourceEditorManagerIntf.UnRegisterChangeEvent(semEditorDestroy, @Self.OnSourceEditorWindowRemoved);
+end;
+
+procedure TABProjectFiles.FormShow(Sender: TObject);
+begin
+
+
 end;
 
 procedure TABProjectFiles.ProjectFilesRemoveMenuItemClick(Sender: TObject);

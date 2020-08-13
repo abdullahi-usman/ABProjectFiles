@@ -12,6 +12,7 @@ object ABProjectFiles: TABProjectFiles
   ClientHeight = 240
   ClientWidth = 320
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   LCLVersion = '2.0.10.0'
   object ABPageControl: TPageControl
@@ -19,8 +20,8 @@ object ABProjectFiles: TABProjectFiles
     Height = 240
     Top = 0
     Width = 320
-    ActivePage = AllFilesSheet
-    TabIndex = 1
+    ActivePage = ProjectSheet
+    TabIndex = 0
     TabOrder = 0
     object ProjectSheet: TTabSheet
       Caption = 'Project Files'
@@ -29,13 +30,13 @@ object ABProjectFiles: TABProjectFiles
       ChildSizing.ShrinkHorizontal = crsHomogenousChildResize
       ChildSizing.ShrinkVertical = crsHomogenousChildResize
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
-      ClientHeight = 0
-      ClientWidth = 0
+      ClientHeight = 212
+      ClientWidth = 312
       object ABProjectFilesTreeView: TTreeView
         Left = 0
-        Height = 1
+        Height = 212
         Top = 0
-        Width = 1
+        Width = 312
         HotTrack = True
         MultiSelect = True
         PopupMenu = ProjectFilesPopupMenu
