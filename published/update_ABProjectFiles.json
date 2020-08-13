@@ -4,12 +4,12 @@
       "ForceNotify" : false,
       "InternalVersion" : 1,
       "Name" : "abprojectfiles.lpk",
-      "Version" : "2.0.0.0"
+      "Version" : "2.1.0.0"
     }
   ],
   "UpdatePackageData" : {
     "DisableInOPM" : false,
-    "DownloadZipURL" : "https://github.com/abdullahi-usman/ABProjectFiles/releases/download/2.0.0.0/ABProjectFiles.zip",
+    "DownloadZipURL" : "https://github.com/abdullahi-usman/ABProjectFiles/releases/download/2.1.0.0/ABProjectFiles.zip",
     "Name" : "ABProjectFiles"
   }
 }
