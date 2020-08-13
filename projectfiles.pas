@@ -454,7 +454,12 @@ var
 begin
   if (ABAllFilesShellTreeView.Selected <> nil) then begin
 
-   LazarusIDE.DoOpenEditorFile(ABAllFilesShellTreeView.Selected.GetTextPath, 0, 0, [ofQuiet, ofAddToProject, ofDoLoadResource]);
+   if LazarusIDE.DoOpenEditorFile(ABAllFilesShellTreeView.Selected.GetTextPath, 0, 0, [ofOnlyIfExists]) = mrOk then begin
+    if IDECommands.ExecuteIDECommand(SrcEditorIntf.SourceEditorManagerIntf.ActiveEditor, ecAddCurUnitToProj) then begin
+     Self.ProjectFilesRefresh;
+    end;
+
+   end;
   end;
 end;
 
