@@ -125,8 +125,8 @@ begin
   LazarusIDE.DoCloseEditorFile(
     SourceEditor, [cfQuiet]);
 
-  RemoveProjectFile(projFile);
-  RemoveProjectFileFromTreeView(projFile)
+   RemoveProjectFile(projFile);
+   RemoveProjectFileFromTreeView(projFile);
 end;
 
 function TABProjectFiles.ProjectOpened(Sender: TObject; AProject: TLazProject): TModalResult;
@@ -388,6 +388,7 @@ var
   c: integer;
 begin
   if (projFile = nil) or (not projFile.IsPartOfProject) then exit;
+
   for c := 0 to (LazarusIDE.ActiveProject.FileCount - 1) do begin
     if projFile = LazarusIDE.ActiveProject.Files[c] then begin
       LazarusIDE.ActiveProject.RemoveUnit(c, True);
