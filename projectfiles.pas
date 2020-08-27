@@ -23,6 +23,7 @@ type
     AllFilesAddItemToProjectMenuItem: TMenuItem;
     AllFilesOpenItem: TMenuItem;
     AllFilesAddSrcPathMenuItem: TMenuItem;
+    ProjectFilesImageList: TImageList;
     ProjectFilesRemoveMenuItem: TMenuItem;
     ProjectFilesCreateNewItemMenuItem: TMenuItem;
     ProjectFilesOpenMenuItem: TMenuItem;
@@ -47,6 +48,9 @@ type
     OthersNodeName: string = 'Others (Non Project Files)';
 
 
+
+    procedure ABAllFilesShellTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
+    var PaintImages, DefaultDraw: Boolean);
   procedure ABAllFilesShellTreeViewDblClick(Sender: TObject);
     procedure ABProjectFilesTreeViewDblClick(Sender: TObject);
     procedure AllFilesAddItemToProjectMenuItemClick(Sender: TObject);
@@ -79,7 +83,7 @@ type
   private
     procedure ABAllFilesShellTreeViewOpenSelectedItem;
     procedure AddNodeToTreeView(const PFile: TLazProjectFile);
-    procedure BuildNode(const PFile: TLazProjectFile; const PNode: TTreeNode);
+    function BuildNode(const PFile: TLazProjectFile; const PNode: TTreeNode): TTreeNode;
     procedure CreateNewProjectItem(Sender: TObject);
     procedure InitProjectTreeViewTopNodes;
     procedure OnSourceEditorWindowRemoved(Sender: TObject);
@@ -201,6 +205,9 @@ begin
       := ABProjectFilesTreeView.Items.AddChild(RootNode, NonUnitNodeName);
     OthersNode
       := ABProjectFilesTreeView.Items.AddChild(RootNode, OthersNodeName);
+
+
+    UnitNode.NodeEffect := gdeShadowed;
 end;
 
 procedure TABProjectFiles.OnSourceEditorWindowRemoved(Sender: TObject);
@@ -416,21 +423,31 @@ begin
 end;
 
 procedure TABProjectFiles.AddNodeToTreeView(const PFile: TLazProjectFile);
+var node : TTreeNode;
+  imageIndex : Integer;
 begin
 
   if not PFile.IsPartOfProject then begin
-    BuildNode(PFile, OthersNode);
+    node := BuildNode(PFile, OthersNode);
+    if FilenameIsPascalUnit(PFile.Filename) then imageIndex := 2 else imageIndex := 3;
   end
   else if FilenameIsPascalUnit(PFile.Filename) then begin
-    BuildNode(PFile, UnitNode);
+    node := BuildNode(PFile, UnitNode);
+    imageIndex := 0;
   end else
   begin
-    BuildNode(PFile, NonUnitsNode)
+    node := BuildNode(PFile, NonUnitsNode);
+    imageIndex := 1;
+  end;
+
+  if node <> nil then begin
+    node.ImageIndex := imageIndex;
+    node.SelectedIndex := imageIndex;
   end;
 end;
 
-procedure TABProjectFiles.BuildNode(const PFile: TLazProjectFile;
-  const PNode: TTreeNode);
+function TABProjectFiles.BuildNode(const PFile: TLazProjectFile;
+  const PNode: TTreeNode): TTreeNode;
 var filename, f: string;
   dirs: TStringArray;
   tempnode, cntempnode: TTreeNode;
@@ -457,6 +474,7 @@ begin
     end;
 
     tempnode.Data := PFile;
+    exit(tempnode);
   end;
 end;
 
@@ -522,6 +540,16 @@ end;
 procedure TABProjectFiles.ABAllFilesShellTreeViewDblClick(Sender: TObject);
 begin
   Self.ABAllFilesShellTreeViewOpenSelectedItem;
+end;
+
+procedure TABProjectFiles.ABAllFilesShellTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
+  var PaintImages, DefaultDraw: Boolean);
+begin
+  if (Stage = cdPrePaint) and FilenameIsPascalUnit(Node.GetTextPath) then begin
+   Node.SelectedIndex := 2;
+   Node.ImageIndex := 2;
+   PaintImages := True
+  end;
 end;
 
 procedure TABProjectFiles.ABAllFilesShellTreeViewOpenSelectedItem;
