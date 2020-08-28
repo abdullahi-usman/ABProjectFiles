@@ -548,7 +548,7 @@ var index, c: integer;
   ProjFile: TLazProjectFile;
   Filename: string;
 begin
-  if (Stage = cdPrePaint) then begin
+  if (Stage = cdPrePaint) and (Node.ImageIndex = -1) then begin
 
    Filename := CleanAndExpandFilename(Node.GetTextPath);
    if (FileGetAttr(Filename) and faDirectory) <> 0 then index := 4
