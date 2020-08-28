@@ -544,10 +544,20 @@ end;
 
 procedure TABProjectFiles.ABAllFilesShellTreeViewAdvancedCustomDrawItem(Sender: TCustomTreeView; Node: TTreeNode; State: TCustomDrawState; Stage: TCustomDrawStage;
   var PaintImages, DefaultDraw: Boolean);
+var index, c: integer;
+  ProjFile: TLazProjectFile;
+  Filename: string;
 begin
-  if (Stage = cdPrePaint) and FilenameIsPascalUnit(Node.GetTextPath) then begin
-   Node.SelectedIndex := 2;
-   Node.ImageIndex := 2;
+  if (Stage = cdPrePaint) then begin
+
+   Filename := CleanAndExpandFilename(Node.GetTextPath);
+   if (FileGetAttr(Filename) and faDirectory) <> 0 then index := 4
+   else if LazarusIDE.ActiveProject.FindFile(Filename, [pfsfOnlyProjectFiles]) <> nil then begin
+    if FilenameIsPascalUnit(Node.GetTextPath) then index := 0 else index:= 1;
+   end else if FilenameIsPascalUnit(Node.GetTextPath) then index := 2 else index:= 3;
+
+   Node.ImageIndex := index;
+   Node.SelectedIndex := index;
    PaintImages := True
   end;
 end;
