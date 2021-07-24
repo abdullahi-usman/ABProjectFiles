@@ -23,6 +23,7 @@ type
     AllFilesAddItemToProjectMenuItem: TMenuItem;
     AllFilesOpenItem: TMenuItem;
     AllFilesAddSrcPathMenuItem: TMenuItem;
+    AllFilesPopupMenuRefresh: TMenuItem;
     ProjectFilesImageList: TImageList;
     ProjectFilesRemoveMenuItem: TMenuItem;
     ProjectFilesCreateNewItemMenuItem: TMenuItem;
@@ -57,6 +58,7 @@ type
     procedure AllFilesAddSrcPathMenuItemClick(Sender: TObject);
     procedure AllFilesOpenItemClick(Sender: TObject);
     procedure AllFilesPopupMenuPopup(Sender: TObject);
+    procedure AllFilesPopupMenuRefreshClick(Sender: TObject);
     procedure AllFilesRadioGroupClick(Sender: TObject);
 
     procedure FormCreate(Sender: TObject);
@@ -520,15 +522,27 @@ begin
 
   if ABAllFilesShellTreeView.Selected <> nil then begin
    if (not FilenameIsPascalUnit(CleanAndExpandFilename(ABAllFilesShellTreeView.Selected.GetTextPath))) then
-    Self.AllFilesAddItemToProjectMenuItem.Enabled := False else Self.AllFilesAddItemToProjectMenuItem.Enabled := True;
+    Self.AllFilesAddItemToProjectMenuItem.Enabled := False
+   else
+
+    Self.AllFilesAddItemToProjectMenuItem.Enabled := True;
 
    //if ((FileGetAttr(ABAllFilesShellTreeView.Selected.GetTextPath) and faDirectory) <> 0) then
    // Self.AllFilesAddSrcPathMenuItem.Enabled := True
    //else Self.AllFilesAddSrcPathMenuItem.Enabled := False;
 
+  end
+  else begin
+    Self.AllFilesOpenItem.Enabled := False;
+    Self.AllFilesAddItemToProjectMenuItem.Enabled := False;
   end;
 
 
+end;
+
+procedure TABProjectFiles.AllFilesPopupMenuRefreshClick(Sender: TObject);
+begin
+  RefreshAllFilesProjectView;
 end;
 
 procedure TABProjectFiles.AllFilesRadioGroupClick(Sender: TObject);
