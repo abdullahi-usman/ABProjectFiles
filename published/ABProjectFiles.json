@@ -3,14 +3,14 @@
     "Name" : "ABProjectFiles",
     "DisplayName" : "ABProjectFiles",
     "Category" : "LazIDEPlugins",
-    "CommunityDescription" : "ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming.\r\n\r\nAfter installation goto: View -> Project Files.\r\nOr as shortcut: CTRL + ALT + P.",
+    "CommunityDescription" : "ABProjectFiles is a little file browser that focuses on the current project management. it allows you to view current project files and perform operations such as, opening and renaming.\r\n\r\n\r\nAfter installation goto: View -> Project Files\r\nOr as shortcut: CTRL + ALT + P",
     "RepositoryFileName" : "ABProjectFiles.zip",
-    "RepositoryFileSize" : 12144,
-    "RepositoryFileHash" : "283df3e6f8a38b4188c0f5d9c928f21a",
-    "RepositoryDate" : 4.4395273904398149E+004,
+    "RepositoryFileSize" : 12201,
+    "RepositoryFileHash" : "574132b0afd6371141aa3fdd9707bb24",
+    "RepositoryDate" : 4.4401725134803244E+004,
     "PackageBaseDir" : "ABProjectFiles\\/",
     "HomePageURL" : "https://abdullahi-usman.github.io/ABProjectFiles",
-    "DownloadURL" : "https://github.com/abdullahi-usman/ABProjectFiles/releases/download/2.4.1.2/ABProjectFiles.zip",
+    "DownloadURL" : "https://github.com/abdullahi-usman/ABProjectFiles/releases/download/2.4.1.4/ABProjectFiles.zip",
     "SVNURL" : ""
   },
   "PackageFiles0" : [
@@ -21,9 +21,9 @@
       "License" : "",
       "RelativeFilePath" : "",
       "VersionAsString" : "2.4.1.4",
-      "LazCompatibility" : "2.0.0, 2.0.2, 2.0.4, 2.0.6, 2.0.8, 2.0.10, 2.0.12",
-      "FPCCompatibility" : "3.0.0, 3.0.2, 3.0.4, 3.2.0",
-      "SupportedWidgetSet" : "gtk2, win32/win64",
+      "LazCompatibility" : "1.6, 1.8, Trunk",
+      "FPCCompatibility" : "2.6.4, 3.0.0, 3.0.2, 3.0.4",
+      "SupportedWidgetSet" : "win32/64, gtk2, carbon",
       "PackageType" : 0,
       "DependenciesAsString" : "CodeTools, IDEIntf"
     }
