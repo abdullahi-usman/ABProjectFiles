@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <PathDelim Value="\"/>
     <Name Value="ABProjectFiles"/>
     <Type Value="RunAndDesignTime"/>
@@ -16,7 +16,7 @@
 
 After installation goto: View -> Project Files
 Or as shortcut: CTRL + ALT + P"/>
-    <Version Major="2" Minor="4" Release="1" Build="4"/>
+    <Version Major="2" Minor="4" Release="1" Build="5"/>
     <Files Count="1">
       <Item1>
         <Filename Value="projectfiles.pas"/>
@@ -24,6 +24,7 @@ Or as shortcut: CTRL + ALT + P"/>
         <UnitName Value="ProjectFiles"/>
       </Item1>
     </Files>
+    <CompatibilityMode Value="True"/>
     <RequiredPkgs Count="2">
       <Item1>
         <PackageName Value="CodeTools"/>

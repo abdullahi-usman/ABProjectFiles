@@ -2,14 +2,14 @@
   "UpdateLazPackages" : [
     {
       "ForceNotify" : false,
-      "InternalVersion" : 6,
+      "InternalVersion" : 1,
       "Name" : "abprojectfiles.lpk",
-      "Version" : "2.4.1.4"
+      "Version" : "2.4.1.5"
     }
   ],
   "UpdatePackageData" : {
     "DisableInOPM" : false,
-    "DownloadZipURL" : "https://github.com/abdullahi-usman/ABProjectFiles/raw/master/published/ABProjectFiles.zip",
+    "DownloadZipURL" : "",
     "Name" : "ABProjectFiles"
   }
 }

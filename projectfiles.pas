@@ -431,9 +431,9 @@ begin
 
   if not PFile.IsPartOfProject then begin
     node := BuildNode(PFile, OthersNode);
-    if FilenameIsPascalUnit(PFile.Filename) then imageIndex := 2 else imageIndex := 3;
+    if FilenameHasPascalExt(PFile.Filename) then imageIndex := 2 else imageIndex := 3;
   end
-  else if FilenameIsPascalUnit(PFile.Filename) then begin
+  else if FilenameHasPascalExt(PFile.Filename) then begin
     node := BuildNode(PFile, UnitNode);
     imageIndex := 0;
   end else
@@ -521,7 +521,7 @@ procedure TABProjectFiles.AllFilesPopupMenuPopup(Sender: TObject);
 begin
 
   if ABAllFilesShellTreeView.Selected <> nil then begin
-   if (not FilenameIsPascalUnit(CleanAndExpandFilename(ABAllFilesShellTreeView.Selected.GetTextPath))) then
+   if (not FilenameHasPascalExt(CleanAndExpandFilename(ABAllFilesShellTreeView.Selected.GetTextPath))) then
     Self.AllFilesAddItemToProjectMenuItem.Enabled := False
    else
 
@@ -567,8 +567,8 @@ begin
    Filename := CleanAndExpandFilename(Node.GetTextPath);
    if (FileGetAttr(Filename) and faDirectory) <> 0 then index := 4
    else if LazarusIDE.ActiveProject.FindFile(Filename, [pfsfOnlyProjectFiles]) <> nil then begin
-    if FilenameIsPascalUnit(Node.GetTextPath) then index := 0 else index:= 1;
-   end else if FilenameIsPascalUnit(Node.GetTextPath) then index := 2 else index:= 3;
+    if FilenameHasPascalExt(Node.GetTextPath) then index := 0 else index:= 1;
+   end else if FilenameHasPascalExt(Node.GetTextPath) then index := 2 else index:= 3;
 
    Node.ImageIndex := index;
    Node.SelectedIndex := index;
